@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>VOCATINEST</title>
+    <link href="style.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/logo-icon.svg">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="style-responsive.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light nav1">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img src="img/logo-navbar.svg" class="img-fluid" alt="Responsive image"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Kenali Dirimu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cari-kerja.html">Cari Pekerjaan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cari-pelatihan.html">Cari Pelatihan</a>
+                    </li>
+                    <li class="nav-item cart">
+                        <a class="nav-link" href=""><img src="img/nav-shop-cart.svg" alt=""></a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <img class="img-fluid" src="img/nav-img-profile.svg" alt="" id="nav-image">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="nav-name" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Jenri Dewany
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" onclick="logout()">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Main -->
+    <div class="container-fluid row-putih pt-0 pb-0">
+        <div class="container dashboard mb-5">
+            <div class="col-12 text-center">
+                <p class="besar">Dashboard Anda</p>
+                <p class="abu">Temukan Beragam Pilihan Pekerjaan Vokasi Sesuai Dengan Bakat dan Minatmu</p>
+            </div>
+            <div class="col-12 top">
+                <div class="row mt-4 justify-content-center">
+                    <a href="dashboard-profile.html" class="col-3 btn p-4 mr-4 text-left active">
+                        <div class="row">
+                            <div class="col-12 col-sm-4 col-lg-3 my-auto">
+                                <img src="img/dashboard-biru-1-active.svg" alt="">
+                            </div>
+                            <div class="col-12 col-sm-8 col-lg-9 my-auto">
+                                <p class="besar">PROFIL ANDA</p>
+                                <p class="kecil"><b>30%</b> Lengkap</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="dashboard-pekerjaan.html" class="col-3 btn p-4 text-left">
+                        <div class="row">
+                            <div class="col-12 col-sm-4 col-lg-3 my-auto">
+                                <img src="img/dashboard-biru-2.svg" alt="">
+                            </div>
+                            <div class="col-12 col-sm-8 col-lg-9 my-auto">
+                                <p class="besar">PEKERJAAN ANDA</p>
+                                <p class="kecil"><b>4</b> pekerjaan yang sesuai</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="dashboard-pelatihan.html" class="col-3 btn p-4 ml-4 text-left">
+                        <div class="row">
+                            <div class="col-12 col-sm-4 col-lg-3 my-auto">
+                                <img src="img/dashboard-biru-3.svg" alt="">
+                            </div>
+                            <div class="col-12 col-sm-8 col-lg-9 my-auto">
+                                <p class="besar">PELATIHAN ANDA</p>
+                                <p class="kecil"><b>2</b> pelatihan yang diikuti</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="error"></div>
+        <div class="container edit-atas dashboard mb-5">
+            <p class="besar text-center">Info Pekerjaan</p>
+            <p class="abu text-center">Isi data dengan benar agar kami dapat mencari pekerjaan yang cocok untuk Anda</p>
+            <div class="row">
+                <div class="col-12 angka text-center">
+                    <button class="btn disabled"><b>1</b></button>
+                    <button class="btn disabled"><b>2</b></button>
+                    <button class="btn active"><b>3</b></button>
+                </div>
+            </div>
+        </div>
+        <div class="loader">Loading...</div>
+        <div class="container form-profile px-5 py-2 mb-3">
+            <div class="row">
+                <div class="col-6">
+                    <p class="judul"><b>Pertanyaan</b></p>
+                </div>
+                <div class="col-6 text-right">
+                    <p class="judul"><b class="biru" id="current">0</b><b class="abu">/<span id="total">0</span></b></p>
+                </div>
+            </div>
+                <div class="form-group">
+                    <label id="title"></label>
+                    <div class="form-check my-auto">
+                        <input class="form-check-input" type="radio" name="answer_id" id="exampleRadios1" value="1" checked required>
+                        <label class="form-check-label" for="exampleRadios1">
+                            Tidak Sama Sekali
+                        </label>
+                    </div>
+                    <div class="form-check my-auto">
+                        <input class="form-check-input" type="radio" name="answer_id" id="exampleRadios2" value="2" required>
+                        <label class="form-check-label" for="exampleRadios2">
+                            Jarang
+                        </label>
+                    </div>
+                    <div class="form-check my-auto">
+                        <input class="form-check-input" type="radio" name="answer_id" id="exampleRadios3" value="3" required>
+                        <label class="form-check-label" for="exampleRadios3">
+                            Kadang-kadang
+                        </label>
+                    </div>
+                    <div class="form-check my-auto">
+                        <input class="form-check-input" type="radio" name="answer_id" id="exampleRadios4" value="4" required>
+                        <label class="form-check-label" for="exampleRadios4">
+                            Sering
+                        </label>
+                    </div>
+                    <div class="form-check my-auto">
+                        <input class="form-check-input" type="radio" name="answer_id" id="exampleRadios5" value="5" required>
+                        <label class="form-check-label" for="exampleRadios5">
+                            Sangat Sering
+                        </label>
+                    </div>
+                </div>
+        </div>
+        
+        <div class="col-12 text-center my-4">
+            <a onclick="gotoNext()" class="btn btndefault btnedit justify-content-center px-5" id="next-btn">Pertanyaan Selanjutnya</a>
+        </div>
+    </div>
+    <!-- Main -->
+
+    <!-- Footer -->
+    <footer class="py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="index.html"><img src="img/logo-footer.svg" alt="">
+                        <p>Copyrights © Vocatinest Team 2020</p>
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Tentang Kami</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Kenali Dirimu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cari-kerja.html">Cari Pekerjaan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cari-pelatihan.html">Cari Pelatihan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Bantuan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Kontak Kami</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Ketentuan & Kondisi</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <script>
+        let activeIndex = 0;
+        let activeTitle = '';
+        let questions = [];
+        let answers = [];
+        let lastIndex = 0;
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+
+        function getProfile(){
+            $.ajax({
+                url: 'https://api.vocatinest.com/profiles/'+localStorage.getItem('user_id'),
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                method: 'GET',
+                success: (data) => {
+                    $('#nav-name').html(data.data.name);
+                    $('#nav-image').attr('src', data.data.image);
+                },
+                error: (error) => {
+                    console.log(error)
+                }
+            });
+        }
+
+        function gotoNext(){
+            let answer_id = 0;
+            $('[name^=answer_id]').map(function(idx, elem){
+                if($(elem).is(':checked')){
+                    answer_id = $(elem).val();
+                };
+            });
+            answers.push({
+                test_id: parseInt(questions[activeIndex].id),
+                answer_id: parseInt(answer_id)
+            })
+            if(answer_id != 0){
+                activeIndex += 1;
+                if(activeIndex <= lastIndex){
+                    $('#current').html(activeIndex+1);
+                    $('#title').html(questions[activeIndex].question);
+                    $('[name=answer_id]').prop('checked', false);
+                }else{
+                    let data = JSON.parse(localStorage.getItem('data'));
+                    data = {
+                        ...data,
+                        answers,
+                        cv: localStorage.getItem('cv'),
+                        image: localStorage.getItem('image')
+                    }
+                    submit(data);
+                }
+                if(activeIndex == lastIndex){
+                    $('#next-btn').html('Selesai');
+                }
+            }
+        }
+
+        function getAllQuestions(){
+            $.ajax({
+                url: 'https://api.vocatinest.com/character-tests',
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                method: 'GET',
+                success: (data) => {
+                    questions = shuffle(data.data);
+                    lastIndex = questions.length-1;
+                    activeIndex = 0;
+                    $('#current').html(activeIndex+1);
+                    $('#total').html(lastIndex+1);
+                    $('#title').html(questions[activeIndex].question);
+                    $('[name=answer_id]').prop('checked', false);
+                },
+                error: (error) => {
+                    console.log(error);
+                    $('#error').html('<div class="alert alert-danger" role="alert">Ups, terjadi kesalahan</div>');
+                }
+            });
+        }
+
+        function submit(data){
+            $('.form-profile').hide();
+            $('#next-btn').hide();
+            $('.loader').show();
+
+            $.ajax({
+                url: 'https://api.vocatinest.com/profiles',
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                method: 'POST',
+                data: JSON.stringify(data),
+                success: (data) => {
+                    window.location.href = "dashboard-profile.html";
+                },
+                error: (error) => {
+                    console.log(error);
+                    $('#error').html('<div class="alert alert-danger" role="alert">Ups, terjadi kesalahan</div>');
+                }
+            });
+        }
+
+        function logout(){
+            localStorage.clear();
+            window.location.href = "masuk.html";
+        }
+        $(function(){
+            getProfile();
+            $('.form-profile').show();
+            $('.loader').hide();
+            getAllQuestions()
+        });
+    </script>
+</body>
+
+</html>
